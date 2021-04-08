@@ -2,6 +2,22 @@
 
 {% block content %}
     <h1>Stock app</h1>
-<br><br>
+        <br><br>
+{% if api %}
+    {% if api == "Error..." %}
+        <h1>There was an problem with your ticker symbol, please try again!</h1>
+    {% else %}
+        {% for key, value in api.items %}
+            {{ key }}: {{ value }} <br>
+        {% endfor %}
+    {% endif %}
+{% else %}
+
+    Do something else
+
+{% endif %}
+    {{ api. }}
+
+<br><br><br><br><br>
 {{api}}
 {% endblock %}
