@@ -24,3 +24,7 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html', {})
+
+
+def add_stock(request):
+    return render(request, 'add_stock.html', {})
