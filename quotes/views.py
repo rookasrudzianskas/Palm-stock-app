@@ -5,16 +5,21 @@ def home(request):
     import requests
     import json
 
-    api_request = requests.get(
-        "https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_be5627477eda4219ab8663c382811c82")
-    try:
-        api = json.loads(api_request.content)
-    except Exception as e:
-        api = "Error..."
+    if request.method == 'POST':
+        ticker = request.POST['ticker']
+        api_request = requests.get(
+            "https://cloud.iexapis.com/stable/stock/" + ticker + "/quote?token=pk_be5627477eda4219ab8663c382811c82")
+
+        try:
+            api = json.loads(api_request.content)
+        except Exception as e:
+            api = "Error..."
+        return render(request, 'home.html', {'api': api})
+
+    else:
+        return render(request, 'home.html', {'ticker': "Enter a Ticker Symbol Above..."})
 
     # pk_be5627477eda4219ab8663c382811c82
-
-    return render(request, 'home.html', {'api': api})
 
 
 def about(request):

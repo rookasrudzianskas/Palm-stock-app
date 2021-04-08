@@ -25,9 +25,10 @@
         </li>
 
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Get Stock Quote" aria-label="Search" name="ticker">
+        <button class="btn btn-outline-light" type="submit">Lookup</button>
       </form>
     </div>
   </div>

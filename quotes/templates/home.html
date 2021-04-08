@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Stock app</h1>
+    <h1>{{ api.companyName }}</h1>
         <br>
+{% if ticker %}
+    {{ ticker }}
+{% endif %}
+
 {% if api %}
     {% if api == "Error..." %}
         <h1>There was an problem with your ticker symbol, please try again!</h1>
     {% else %}
-        {{ api.companyName }}<br>
         Price: ${{ api.latestPrice }}<br>
         Previous Close: {{ api.previousClose }}<br>
         Market Cap: ${{ api.marketCap }}<br>
@@ -17,7 +20,7 @@
     {% endif %}
 {% else %}
 
-    Do something else
+<!--    @todo-->
 
 {% endif %}
 
