@@ -2,22 +2,23 @@
 
 {% block content %}
     <h1>Stock app</h1>
-        <br><br>
+        <br>
 {% if api %}
     {% if api == "Error..." %}
         <h1>There was an problem with your ticker symbol, please try again!</h1>
     {% else %}
-        {% for key, value in api.items %}
-            {{ key }}: {{ value }} <br>
-        {% endfor %}
+        {{ api.companyName }}<br>
+        Price: ${{ api.latestPrice }}<br>
+        Previous Close: {{ api.previousClose }}<br>
+        Market Cap: ${{ api.marketCap }}<br>
+        YTD Change: {{ api.ytdChange }}<br>
+        52Wk High: {{ api.week52High }}<br>
+        52Wk Low: {{ api.week52Low }}<br>
     {% endif %}
 {% else %}
 
     Do something else
 
 {% endif %}
-    {{ api. }}
 
-<br><br><br><br><br>
-{{api}}
 {% endblock %}
