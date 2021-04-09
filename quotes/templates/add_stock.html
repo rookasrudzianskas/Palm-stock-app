@@ -21,25 +21,37 @@
       <th scope="col">Market Cap</th>
       <th scope="col">52Wk High</th>
       <th scope="col">52Wk Low</th>
-      <th scope="col">YTD Chane</th>
+      <th scope="col">YTD Change</th>
+      <th scope="col">Delete Stock</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-      <td>@mdo</td>
-    </tr>
+{% if ticker %}
+      {% for list_item in output %}
+          <tr>
+            <th scope="row">{{list_item.companyName}}</th>
+            <td>${{ list_item.latestPrice }}</td>
+            <td>${{ list_item.previousClose }}</td>
+            <td>${{ list_item.marketCap }}</td>
+            <td>${{ list_item.week52High }}</td>
+            <td>${{ list_item.week52Low }}</td>
+            <td>{{ list_item.ytdChange }}%</td>
+            <td><a href="/">Delete Stock</td>
+         </tr>
+      {% endfor %}
+
+
+  {% else %}
+
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Add stocks to your portfolio</strong> You should type in the field above!.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+  {% endif %}
 
   </tbody>
 </table>
-{% for item in ticker %}
-    {{ item }} - <a href="{% url 'delete' item.id %}">Delete Stock</a> <br>
-    {% endfor %}
 
 
 {% endblock %}
